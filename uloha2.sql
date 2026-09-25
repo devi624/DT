@@ -34,3 +34,4 @@ SELECT customers.region, SUM(orders.sales) AS celkova_hodnota_predaja, AVG(order
 --uloha12
 SELECT customers.region, SUM(CASE WHEN orders.sales > 1000 THEN 1 ELSE 0 END) AS pocet_high_value, SUM(CASE WHEN orders.sales <= 1000 THEN 1 ELSE 0 END) AS pocet_low_value FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.region;
 --uloha13
+SELECT customers.customer_name, SUM(orders.sales) AS celkovy_predaj, AVG(orders.discount) AS priemerna_zlava, COUNT(orders.order_id) AS pocet_objednavok, CASE WHEN SUM(orders.sales) > 2500 THEN 'VIP' ELSE 'REGULAR' END AS typ_zakaznika FROM customers JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_name ORDER BY celkovy_predaj DESC;
